@@ -225,11 +225,11 @@
 												return false
 											}
 											if (document.getElementById("number").value==""){
-												alert("You Forgot Something!!!!!!")
+												alert("You Forgot Texture Number!!!!!!")
 												return false
 											}
 										}
-										window.location.reload()
+										clear();
                     $.get("https://script.google.com/macros/s/AKfycbxoVRbW5nkgdvw_xfVsq7Zb8nu1FFdhntk-b6KMSa_HhWVhvps/exec", {
                                 "number": document.getElementById("number").value,
                                 "Q1": getAnswer(document.getElementsByName("Q1")),
@@ -250,7 +250,8 @@
 																"Q16": getAnswer(document.getElementsByName("Q16"))
                             },
                             function (data) {
-
+															console.log(data)
+															window.location.reload()
                             });
                 }
 								function getAnswer(options){
@@ -281,11 +282,10 @@
 								}
 								window.onload = function arrangeSection(){
 									var random = shuffle([1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16])
-									console.log(random)
 									var sections = $(".question");
 									for (i=0;i<random.length-1;i++){
 
-										if ((i+1)%4==0) {console.log(i,Math.floor(i/4+1))
+										if ((i+1)%4==0) {
 											$("#section"+random[i].toString()).before($("#hr"+Math.floor(i/4+1).toString()));
 											$("#hr"+Math.floor(i/4+1).toString()).before($("#section"+random[i+1].toString()));
 										}
@@ -304,6 +304,9 @@
 								        SendScore();
 								    }
 								});
+								function clear(){
+									document.getElementById("main").style.display="none";
+								}
             </script>
 		<!-- Scripts -->
 			<!--[if lte IE 8]><script src="assets/js/respond.min.js"></script><![endif]-->
